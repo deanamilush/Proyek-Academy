@@ -16,6 +16,7 @@ import com.dean.academy.reader.CourseReaderActivity
 import com.dean.academy.reader.CourseReaderCallback
 import com.dean.academy.reader.CourseReaderViewModel
 import com.dean.academy.utils.DataDummy
+import com.dean.academy.viewmodel.ViewModelFactory
 
 
 class ModuleListFragment : Fragment(), MyAdapterClickListener {
@@ -41,7 +42,8 @@ class ModuleListFragment : Fragment(), MyAdapterClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProvider(requireActivity(), ViewModelProvider.NewInstanceFactory())[CourseReaderViewModel::class.java]
+        val factory = ViewModelFactory.getInstance(requireActivity())
+        viewModel = ViewModelProvider(requireActivity(), factory)[CourseReaderViewModel::class.java]
         adapter = ModuleListAdapter(this)
         populateRecyclerView(viewModel.getModules())
     }

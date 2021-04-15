@@ -17,6 +17,7 @@ import com.dean.academy.databinding.ActivityDetailCourseBinding
 import com.dean.academy.databinding.ContentDetailCourseBinding
 import com.dean.academy.reader.CourseReaderActivity
 import com.dean.academy.utils.DataDummy
+import com.dean.academy.viewmodel.ViewModelFactory
 
 class DetailCourseActivity : AppCompatActivity() {
 
@@ -29,7 +30,8 @@ class DetailCourseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[DetailCourseViewModel::class.java]
+        val factory = ViewModelFactory.getInstance(this)
+        val viewModel = ViewModelProvider(this, factory)[DetailCourseViewModel::class.java]
 
         val activityDetailCourseBinding = ActivityDetailCourseBinding.inflate(layoutInflater)
         detailContentBinding = activityDetailCourseBinding.detailContent
